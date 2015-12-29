@@ -1,4 +1,12 @@
 README
+## Please make sure that the Readme is accessible on the GitHub page in the end. 
+## We will need to provide at least a couple simple test files. So that the user can see what the expected format is
+## QQ: Have you compared the output of our allele specific counts with ASEReadCounter? It might good to make sure that we are the same
+## Let's make the Maternal + Paternal readcount (20) a parameter with a default value of 20.
+## We should add the necessary helper file examples in addition to the input bam file. 
+## Let's enable the number of bootstrap samples to be a parameter with the default value (1000). 
+## I will look a little more deeply for this but if possible we should try to minimize the number of separate steps that need to be run by the user. 
+## Alternatively we can add another wrapper that will run all these steps internally. This will enable someone to run the whole analysis for at least the test files with a single command
 
 CODE FLOW: These are scripts you submit to the commandline in the order given
 
@@ -19,7 +27,7 @@ bash Submit_Script4.sh /directory/to/bam/files /directory/to/where/you/want/outp
 
 2) Merge.R
 
-After this your directory should have three files: RIBO_MERGED, RNA_MERGED, and MERGED. You don't need any arguments for this, but look at the globrx patterns within the script to make sure that they match what it needs to be. The script will run some code twice, one for RIBO, and one for RNA, so you want to make sure that the first time, ti's getting all the RIBO replicates, and the second time it's getting only the RNA replicates
+After this your directory should have three files: RIBO_MERGED, RNA_MERGED, and MERGED. You don't need any arguments for this, but look at the globrx patterns within the script to make sure that they match what it needs to be. The script will run some code twice, one for RIBO, and one for RNA, so you want to make sure that the first time, it's getting all the RIBO replicates, and the second time it's getting only the RNA replicates
 
 Commandline execution:
 
@@ -27,7 +35,7 @@ Rscript Merge.R
 
 3) Merge.sh
 
-After this script, your directory should have a bunch of '.BOTH' files, one for each sample. THis .BOTH file will have all of the heterozygous positions with maternal and paternal RIBO and RNA reads, all that passed the maternal + paternal >= 20 cutoff.  
+After this script, your directory should have a bunch of '.BOTH' files, one for each sample. This .BOTH file will have all of the heterozygous positions with maternal and paternal RIBO and RNA reads, all that passed the maternal + paternal >= 20 cutoff.  
 However, this script uses a file that the user has to create. For all of the samples that the user wants to create a .BOTH for, they have to provide how many RIBO and RNA replicates it has in this form:
 
 Sample1:RiboReplicates:RNAReplicates
